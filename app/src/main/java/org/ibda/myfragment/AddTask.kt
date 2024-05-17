@@ -6,45 +6,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import androidx.navigation.findNavController
 
 
 /**
  * A simple [Fragment] subclass.
- * Use the [AFragment.newInstance] factory method to
+ * Use the [BFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AFragment : Fragment() {
 
+
+class BFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_a, container, false)
 
-        val goToBBtn = view.findViewById<Button>(R.id.goToB)
+        val view = inflater.inflate(R.layout.add_task, container, false)
         val goToCBtn = view.findViewById<Button>(R.id.goToC)
-
-        goToBBtn.setOnClickListener {
-            // ask for a nav controller
-            val navController = view.findNavController()
-            // navigate into certain destination
-            navController.navigate(R.id.action_AFragment_to_BFragment)
-
-        }
-
         goToCBtn.setOnClickListener {
             // ask for a nav controller
             val navController = view.findNavController()
 
-            val action = AFragmentDirections.actionAFragmentToCFragment("Hello From Fragment A to Fragment C!")
+            val inputEditText = view.findViewById<EditText>(R.id.input_huruf_besar)
+            val inputText = "NGEG" // Convert to uppercase
+
+            val action = BFragmentDirections.actionBFragmentToCFragment(inputText)
+
+//            val action = BFragmentDirections.actionBFragmentToCFragment("")
 
             // navigate into certain destination
             navController.navigate(action)
+
         }
 
         return view
     }
+
 }
