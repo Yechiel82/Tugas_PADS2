@@ -39,4 +39,17 @@
             app:argType="string" />
     </fragment>
 
+    <fragment
+        android:id="@+id/cFragment"
+        android:name="org.ibda.myfragment.CFragment"
+        tools:layout="@layout/show_task">
+        <action
+            android:id="@+id/action_cFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="org.ibda.myfragment.DetailFragment"
+        tools:layout="@layout/fragment_task_details" />
+
 </navigation>
