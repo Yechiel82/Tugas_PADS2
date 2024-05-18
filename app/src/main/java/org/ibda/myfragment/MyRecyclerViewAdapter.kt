@@ -8,8 +8,17 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 
-data class Task(val name: String, val priority: String)
 
+
+data class Task(
+    val name: String,
+    val priority: String,
+    val stage: String,
+    val description: String,
+    val createdTime: String,
+    val finishedTime: String,
+    val duration: String
+)
 class MyRecyclerViewAdapter(private var myDatas: List<Task>) :
     RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
@@ -29,6 +38,7 @@ class MyRecyclerViewAdapter(private var myDatas: List<Task>) :
         }
     }
 
+
     override fun getItemCount(): Int {
         return filteredDatas.size
     }
@@ -47,7 +57,15 @@ class MyRecyclerViewAdapter(private var myDatas: List<Task>) :
     private fun showTaskDetails(context: Context, task: Task) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle("Task Details")
-        builder.setMessage("Name: ${task.name}\nPriority: ${task.priority}")
+        builder.setMessage(
+            "Name: ${task.name}\n" +
+                    "Priority: ${task.priority}\n" +
+                    "Stage: ${task.stage}\n" +
+                    "Description: ${task.description}\n" +
+                    "Created Time: ${task.createdTime}\n" +
+                    "Finished Time: ${task.finishedTime}\n" +
+                    "Duration: ${task.duration}"
+        )
         builder.setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
         builder.show()
     }
@@ -55,4 +73,5 @@ class MyRecyclerViewAdapter(private var myDatas: List<Task>) :
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
     }
+
 }

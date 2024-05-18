@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class CFragment : Fragment() {
     private var myDatas = listOf(
-        Task("WOI", "important"),
-        Task("Cipto", "urgent"),
-        Task("Kurniawan", "normal"),
-        Task("Hadiwardoyo", "important")
+        Task("WOI", "important", "new", "Description of WOI", "2024-05-17 10:00", "2024-05-17 12:00", "2 hours"),
+        Task("Cipto", "urgent", "in progress", "Description of Cipto", "2024-05-17 09:00", "2024-05-17 11:00", "2 hours"),
+        Task("Kurniawan", "normal", "done", "Description of Kurniawan", "2024-05-16 08:00", "2024-05-16 10:00", "2 hours"),
+        Task("Hadiwardoyo", "important", "new", "Description of Hadiwardoyo", "2024-05-17 08:00", "2024-05-17 09:00", "1 hour")
     )
     private lateinit var myRV: RecyclerView
     private lateinit var addBtn: Button
@@ -22,7 +22,6 @@ class CFragment : Fragment() {
     private lateinit var urgentBtn: Button
     private lateinit var normalBtn: Button
     private lateinit var _adapter: MyRecyclerViewAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +39,7 @@ class CFragment : Fragment() {
         myRV.adapter = _adapter
 
         addBtn.setOnClickListener {
-            _adapter.addData(Task("This is a new Data Item!", "normal"))
+            _adapter.addData(Task("New Task", "normal", "new", "Description of new task", "2024-05-18 10:00", "2024-05-18 12:00", "2 hours"))
         }
 
         importantBtn.setOnClickListener {
@@ -58,4 +57,3 @@ class CFragment : Fragment() {
         return view
     }
 }
-
