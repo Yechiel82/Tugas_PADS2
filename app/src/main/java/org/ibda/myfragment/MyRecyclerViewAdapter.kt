@@ -8,8 +8,6 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 
-
-
 data class Task(
     val name: String,
     val priority: String,
@@ -38,14 +36,13 @@ class MyRecyclerViewAdapter(private var myDatas: List<Task>) :
         }
     }
 
-
     override fun getItemCount(): Int {
         return filteredDatas.size
     }
 
-    fun addData(newData: Task) {
-        myDatas = myDatas + newData
-        filteredDatas = myDatas
+    fun updateData(newData: List<Task>) {
+        myDatas = newData
+        filteredDatas = newData
         notifyDataSetChanged()
     }
 
@@ -73,5 +70,4 @@ class MyRecyclerViewAdapter(private var myDatas: List<Task>) :
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
     }
-
 }

@@ -1,100 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AFragment">
+    android:padding="16dp">
 
-    <!-- New Tasks Section -->
-    <GridLayout
-        android:id="@+id/new_tasks_grid"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/new_tasks_total"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:columnCount="2"
-        android:rowCount="2">
+        android:text="New Tasks: 0"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:onClick="onCategoryClicked"
+        android:layout_marginTop="8dp" />
 
-        <TextView
-            android:id="@+id/new_tasks_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Tasks"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_columnSpan="2"/>
-
-        <Button
-            android:id="@+id/see_new"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:text="See Details" />
-
-    </GridLayout>
-
-    <!-- In Progress Tasks Section -->
-    <GridLayout
-        android:id="@+id/in_progress_tasks_grid"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/in_progress_tasks_total"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:columnCount="2"
-        android:rowCount="2">
+        android:text="In Progress Tasks: 0"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:onClick="onCategoryClicked"
+        android:layout_marginTop="8dp" />
 
-        <TextView
-            android:id="@+id/in_progress_tasks_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="In Progress Tasks"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_columnSpan="2"/>
-
-        <Button
-            android:id="@+id/see_progress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:text="See Details" />
-
-    </GridLayout>
-
-    <!-- Done Tasks Section -->
-    <GridLayout
-        android:id="@+id/done_tasks_grid"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/done_tasks_total"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:columnCount="2"
-        android:rowCount="2">
+        android:text="Done Tasks: 0"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:onClick="onCategoryClicked"
+        android:layout_marginTop="8dp" />
 
-        <TextView
-            android:id="@+id/done_tasks_total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Done Tasks"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_columnSpan="2"/>
-
-        <Button
-            android:id="@+id/see_done"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:text="See Details" />
-
-    </GridLayout>
-
-    <!-- Add Task Button -->
     <Button
         android:id="@+id/add_task_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Task"
-        android:layout_margin="16dp" />
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>

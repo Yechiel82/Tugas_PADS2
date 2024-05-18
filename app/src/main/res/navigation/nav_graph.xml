@@ -18,12 +18,11 @@
             app:destination="@id/CFragment" />
     </fragment>
 
-
     <fragment
         android:id="@+id/BFragment"
         android:name="org.ibda.myfragment.BFragment"
         android:label="fragment_b"
-        tools:layout="@layout/add_task" >
+        tools:layout="@layout/add_task">
         <action
             android:id="@+id/action_BFragment_to_CFragment"
             app:destination="@id/CFragment" />
@@ -33,23 +32,13 @@
         android:id="@+id/CFragment"
         android:name="org.ibda.myfragment.CFragment"
         android:label="fragment_c"
-        tools:layout="@layout/show_task" >
+        tools:layout="@layout/show_task">
         <argument
-            android:name="message"
+            android:name="stage"
             app:argType="string" />
     </fragment>
 
-    <fragment
-        android:id="@+id/cFragment"
-        android:name="org.ibda.myfragment.CFragment"
-        tools:layout="@layout/show_task">
-        <action
-            android:id="@+id/action_cFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="org.ibda.myfragment.DetailFragment"
-        tools:layout="@layout/fragment_task_details" />
-
+    <action
+        android:id="@+id/action_global_to_CFragment"
+        app:destination="@id/CFragment" />
 </navigation>

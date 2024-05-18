@@ -1,20 +1,23 @@
 package org.ibda.myfragment
+
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.GridLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 
 class AFragment : Fragment() {
 
-    private lateinit var newTasksGrid: GridLayout
-    private lateinit var inProgressTasksGrid: GridLayout
-    private lateinit var doneTasksGrid: GridLayout
-    private lateinit var addTaskButton: Button
+    private val taskViewModel: TaskViewModel by activityViewModels()
+
+    private lateinit var newTasksTextView: TextView
+    private lateinit var inProgressTasksTextView: TextView
+    private lateinit var doneTasksTextView: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,52 +25,56 @@ class AFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.main_page_frag, container, false)
 
-        // Initialize views
-        newTasksGrid = view.findViewById(R.id.new_tasks_grid)
-        inProgressTasksGrid = view.findViewById(R.id.in_progress_tasks_grid)
-        doneTasksGrid = view.findViewById(R.id.done_tasks_grid)
-        addTaskButton = view.findViewById(R.id.add_task_button)
+        newTasksTextView = view.findViewById(R.id.new_tasks_total)
+        inProgressTasksTextView = view.findViewById(R.id.in_progress_tasks_total)
+        doneTasksTextView = view.findViewById(R.id.done_tasks_total)
 
-        // Set OnClickListener for the addTaskButton
-        addTaskButton.setOnClickListener {
-            // Navigate to BFragment when addTaskButton is clicked
-            findNavController().navigate(R.id.action_AFragment_to_CFragment)
+
+
+        newTasksTextView.setOnClickListener {
+            logClickedTextView("New Tasks")
+            navigateToCFragmentWithStage("new")
+
+        }
+        inProgressTasksTextView.setOnClickListener {
+            logClickedTextView("In Progress Tasks")
+            navigateToCFragmentWithStage("in progress")
+        }
+        doneTasksTextView.setOnClickListener {
+            logClickedTextView("Done Tasks")
+            navigateToCFragmentWithStage("done")
         }
 
-        // Example: Add some dummy tasks (replace with your data source)
-        addTaskToCategory("New", "Task 1")
-        addTaskToCategory("New", "Task 2")
-        addTaskToCategory("In Progress", "Task 3")
-        addTaskToCategory("Done", "Task 4")
-
-        // Update task counts
-        updateTaskCounts()
+        observeTaskCounts()
 
         return view
     }
 
-    private fun addTaskToCategory(category: String, taskName: String) {
-        val taskTextView = TextView(requireContext()).apply {
-            text = taskName
-            textSize = 18f
-        }
-        when (category) {
-            "New" -> newTasksGrid.addView(taskTextView)
-            "In Progress" -> inProgressTasksGrid.addView(taskTextView)
-            "Done" -> doneTasksGrid.addView(taskTextView)
-        }
+    private fun logClickedTextView(textViewName: String) {
+        Log.d("AFragment", "Clicked TextView: $textViewName")
     }
 
-    private fun updateTaskCounts() {
-        // Here you would fetch task counts for each stage from your data source
-        val newTasksCount = newTasksGrid.childCount - 1 // subtracting 1 for the title TextView
-        val inProgressTasksCount = inProgressTasksGrid.childCount - 1
-        val doneTasksCount = doneTasksGrid.childCount - 1
+    private fun navigateToCFragmentWithStage(stage: String) {
+        Log.d("AFragment", "Navigating to CFragment with stage: $stage")
+        val action = AFragmentDirections.actionAFragmentToCFragment(stage)
+        findNavController().navigate(action)
+    }
 
-        // Update total task counts
-        view?.findViewById<TextView>(R.id.new_tasks_total)?.text = "New Tasks: $newTasksCount"
-        view?.findViewById<TextView>(R.id.in_progress_tasks_total)?.text = "In Progress Tasks: $inProgressTasksCount"
-        view?.findViewById<TextView>(R.id.done_tasks_total)?.text = "Done Tasks: $doneTasksCount"
+
+    private fun observeTaskCounts() {
+        taskViewModel.tasks.observe(viewLifecycleOwner, Observer { tasks ->
+            val newTasksCount = tasks.count { it.stage == "new" }
+            val inProgressTasksCount = tasks.count { it.stage == "in progress" }
+            val doneTasksCount = tasks.count { it.stage == "done" }
+
+            updateTaskCount(newTasksTextView, "New Tasks", newTasksCount)
+            updateTaskCount(inProgressTasksTextView, "In Progress Tasks", inProgressTasksCount)
+            updateTaskCount(doneTasksTextView, "Done Tasks", doneTasksCount)
+        })
+    }
+
+    private fun updateTaskCount(textView: TextView, category: String, count: Int) {
+        textView.text = "$category: $count"
+        Log.d("AFragment", "Updated $category count: $count")
     }
 }
-
