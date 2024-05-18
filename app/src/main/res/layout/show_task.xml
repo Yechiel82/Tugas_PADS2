@@ -1,69 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/fragment_container"
+    <Button
+        android:id="@+id/addBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Task" />
+
+    <Button
+        android:id="@+id/Filter_Important"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter Important" />
+
+    <Button
+        android:id="@+id/Filter_Urgent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter Urgent" />
+
+    <Button
+        android:id="@+id/Filter_Normal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter Normal" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginStart="12dp"
-            >
-
-            <Button
-                android:id="@+id/Filter_Important"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Important"/>
-
-            <Button
-                android:id="@+id/Filter_Urgent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Urgent"/>
-
-            <Button
-                android:id="@+id/Filter_Normal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Normal"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="50dp"
-            >
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/myRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                tools:listitem="@layout/item_view" />
-
-            <Button
-                android:id="@+id/addBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Add Item"/>
-
-
-        </LinearLayout>
-
-    </FrameLayout>
-
+        android:layout_height="wrap_content" />
 </LinearLayout>
+
+
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:orientation="vertical">-->
+
+<!--    <FrameLayout-->
+<!--        android:id="@+id/fragment_container"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginStart="12dp"-->
+<!--            >-->
+
+<!--            <Button-->
+<!--                android:id="@+id/Filter_Important"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:text="Important"/>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/Filter_Urgent"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:text="Urgent"/>-->
+
+<!--            <Button-->
+<!--                android:id="@+id/Filter_Normal"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:text="Normal"/>-->
+
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            >-->
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/myRecyclerView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_weight="1"-->
+<!--                tools:listitem="@layout/item_view" />-->
+
+<!--            <Button-->
+<!--                android:id="@+id/addBtn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_horizontal"-->
+<!--                android:text="Add Item"/>-->
+
+
+<!--        </LinearLayout>-->
+
+<!--    </FrameLayout>-->
+
+<!--</LinearLayout>-->

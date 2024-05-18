@@ -1,4 +1,3 @@
-
 package org.ibda.myfragment
 
 import android.os.Bundle
@@ -59,3 +58,4 @@ class CFragment : Fragment() {
         return view
     }
 }
+
