@@ -1,12 +1,16 @@
+
 package org.ibda.myfragment
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+
 
 data class Task(
     val name: String,
@@ -17,7 +21,8 @@ data class Task(
     val finishedTime: String,
     val duration: String
 )
-class MyRecyclerViewAdapter(private var myDatas: List<Task>) :
+
+class MyRecyclerViewAdapter(private var myDatas: List<Task>, private val taskViewModel: TaskViewModel) :
     RecyclerView.Adapter<MyRecyclerViewAdapter.MyViewHolder>() {
 
     private var filteredDatas: List<Task> = myDatas
@@ -30,6 +35,14 @@ class MyRecyclerViewAdapter(private var myDatas: List<Task>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val task = filteredDatas[position]
         holder.textView.text = task.name
+
+        holder.itemButton.setOnClickListener {
+            when (task.stage) {
+                "new" -> taskViewModel.updateTaskStage(task, "in progress")
+                "in progress" -> taskViewModel.updateTaskStage(task, "done")
+                "done" -> showTaskDetails(holder.itemView.context, task)
+            }
+        }
 
         holder.itemView.setOnClickListener {
             showTaskDetails(holder.itemView.context, task)
@@ -69,5 +82,6 @@ class MyRecyclerViewAdapter(private var myDatas: List<Task>) :
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
+        val itemButton: Button = itemView.findViewById(R.id.itemButton)
     }
 }

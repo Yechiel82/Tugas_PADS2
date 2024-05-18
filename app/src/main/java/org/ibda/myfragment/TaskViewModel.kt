@@ -18,4 +18,10 @@ class TaskViewModel : ViewModel() {
     fun addTask(task: Task) {
         _tasks.value = _tasks.value?.plus(task)
     }
+
+    fun updateTaskStage(task: Task, newStage: String) {
+        _tasks.value = _tasks.value?.map {
+            if (it == task) it.copy(stage = newStage) else it
+        }
+    }
 }

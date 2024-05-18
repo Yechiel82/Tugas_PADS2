@@ -1,39 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16sp"
-    android:layout_gravity="center_horizontal"
-    tools:context=".BFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TASK:" />
+    android:padding="16dp">
 
     <EditText
-        android:id="@+id/input_huruf_besar"
-        android:layout_width="wrap_content"
+        android:id="@+id/task_name"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Create New Task Here"/>
+        android:hint="Task Name" />
 
+    <EditText
+        android:id="@+id/task_priority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Priority" />
+
+    <EditText
+        android:id="@+id/task_stage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Stage" />
+
+    <EditText
+        android:id="@+id/task_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description" />
+
+    <EditText
+        android:id="@+id/task_start_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start Time" />
+
+    <EditText
+        android:id="@+id/task_end_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="End Time" />
+
+    <EditText
+        android:id="@+id/task_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Duration" />
 
     <Button
-        android:id="@+id/goToC"
+        android:id="@+id/button_add_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center_horizontal"
-        android:text="ADD" />
-
-
-
-
+        android:text="Add Task" />
 </LinearLayout>

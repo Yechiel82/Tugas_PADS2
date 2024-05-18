@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -18,6 +19,7 @@ class AFragment : Fragment() {
     private lateinit var newTasksTextView: TextView
     private lateinit var inProgressTasksTextView: TextView
     private lateinit var doneTasksTextView: TextView
+    private lateinit var addDataButton: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,13 +30,11 @@ class AFragment : Fragment() {
         newTasksTextView = view.findViewById(R.id.new_tasks_total)
         inProgressTasksTextView = view.findViewById(R.id.in_progress_tasks_total)
         doneTasksTextView = view.findViewById(R.id.done_tasks_total)
-
-
+        addDataButton = view.findViewById(R.id.button_add_data)
 
         newTasksTextView.setOnClickListener {
             logClickedTextView("New Tasks")
             navigateToCFragmentWithStage("new")
-
         }
         inProgressTasksTextView.setOnClickListener {
             logClickedTextView("In Progress Tasks")
@@ -43,6 +43,9 @@ class AFragment : Fragment() {
         doneTasksTextView.setOnClickListener {
             logClickedTextView("Done Tasks")
             navigateToCFragmentWithStage("done")
+        }
+        addDataButton.setOnClickListener {
+            navigateToAddTaskFragment()
         }
 
         observeTaskCounts()
@@ -60,6 +63,11 @@ class AFragment : Fragment() {
         findNavController().navigate(action)
     }
 
+    private fun navigateToAddTaskFragment() {
+        Log.d("AFragment", "Navigating to AddTaskFragment")
+        val action = AFragmentDirections.actionAFragmentToBFragment()
+        findNavController().navigate(action)
+    }
 
     private fun observeTaskCounts() {
         taskViewModel.tasks.observe(viewLifecycleOwner, Observer { tasks ->

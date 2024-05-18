@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -18,12 +19,19 @@ class CFragment : Fragment() {
 
     private lateinit var myRV: RecyclerView
     private lateinit var addBtn: Button
+    private lateinit var backBtn: Button
     private lateinit var importantBtn: Button
     private lateinit var urgentBtn: Button
     private lateinit var normalBtn: Button
     private lateinit var _adapter: MyRecyclerViewAdapter
 
-    private var stage: String = ""
+    private var _stage: String = ""
+    private var stage: String
+        get() = _stage
+        set(value) {
+            _stage = value
+            Log.d("stage", "$value apa nihh")
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,20 +41,20 @@ class CFragment : Fragment() {
 
         myRV = view.findViewById(R.id.myRecyclerView)
         addBtn = view.findViewById(R.id.addBtn)
+        backBtn = view.findViewById(R.id.backBtn)
         importantBtn = view.findViewById(R.id.Filter_Important)
         urgentBtn = view.findViewById(R.id.Filter_Urgent)
         normalBtn = view.findViewById(R.id.Filter_Normal)
 
         myRV.layoutManager = LinearLayoutManager(requireContext())
 
-        _adapter = MyRecyclerViewAdapter(listOf())
+        _adapter = MyRecyclerViewAdapter(listOf(), taskViewModel)
         myRV.adapter = _adapter
 
         // Retrieve stage from arguments using Safe Args
         arguments?.let {
             val args = CFragmentArgs.fromBundle(it)
             stage = args.stage
-            Log.d("stage", "$stage apa nihh")
         }
 
         taskViewModel.tasks.observe(viewLifecycleOwner, Observer { tasks ->
@@ -69,6 +77,10 @@ class CFragment : Fragment() {
 
         normalBtn.setOnClickListener {
             _adapter.filterData("normal")
+        }
+
+        backBtn.setOnClickListener {
+            view.findNavController().navigateUp()
         }
 
         return view
