@@ -20,6 +20,7 @@ class BFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.add_task, container, false)
 
+
         val taskNameEditText = view.findViewById<EditText>(R.id.task_name)
         val taskPriorityEditText = view.findViewById<EditText>(R.id.task_priority)
         val taskStageEditText = view.findViewById<EditText>(R.id.task_stage)

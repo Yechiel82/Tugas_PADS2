@@ -63,9 +63,9 @@ class CFragment : Fragment() {
             _adapter.updateData(filteredTasks)
         })
 
-        addBtn.setOnClickListener {
-            taskViewModel.addTask(Task("New Task", "normal", stage, "Description of new task", "2024-05-18 10:00", "2024-05-18 12:00", "2 hours"))
-        }
+//        addBtn.setOnClickListener {
+//            taskViewModel.addTask(Task("New Task", "normal", stage, "Description of new task", "2024-05-18 10:00", "2024-05-18 12:00", "2 hours"))
+//        }
 
         importantBtn.setOnClickListener {
             _adapter.filterData("important")

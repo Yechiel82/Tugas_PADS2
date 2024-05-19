@@ -1,4 +1,5 @@
 
+
 package org.ibda.myfragment
 
 import android.content.Context
@@ -8,11 +9,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 
-
 data class Task(
+    val id: Long = 0,
     val name: String,
     val priority: String,
     val stage: String,
